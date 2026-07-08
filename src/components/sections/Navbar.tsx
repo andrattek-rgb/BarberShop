@@ -87,7 +87,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden flex-shrink-0 p-2 text-white"
+            className="lg:hidden flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-black/70 text-white shadow-lg shadow-black/20 backdrop-blur-md transition-colors hover:bg-black/90"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
