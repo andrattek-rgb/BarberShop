@@ -70,7 +70,7 @@ export function Pricing() {
         subtitle="Quality grooming at competitive prices"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
         {services.map((service, index) => {
           const features = packageFeatures[service.name] || [];
           const isPopular = service.is_popular;
@@ -91,7 +91,7 @@ export function Pricing() {
                 )}
               >
                 {isPopular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-amber-500 text-black text-xs font-semibold flex items-center gap-1">
+                  <div className="absolute -top-3 left-1/2 max-w-[calc(100%-2rem)] -translate-x-1/2 whitespace-nowrap px-3 py-1 rounded-full bg-amber-500 text-black text-xs font-semibold flex items-center gap-1">
                     <Sparkles className="w-3 h-3" />
                     Popular
                   </div>
@@ -141,7 +141,36 @@ export function Pricing() {
         className="mt-16"
       >
         <h3 className="text-xl font-semibold text-white text-center mb-6">Service Comparison</h3>
-        <div className="overflow-x-auto">
+        <div className="space-y-3 sm:hidden">
+          {services.map((service) => (
+            <Card key={service.id} className="p-4">
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h4 className="font-semibold text-white">{service.name}</h4>
+                    {service.is_popular && (
+                      <span className="px-2 py-0.5 text-xs rounded bg-amber-500/20 text-amber-500">
+                        Popular
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-1 text-sm text-gray-400">{service.duration_minutes} min</p>
+                </div>
+                <div className="flex-shrink-0 text-right">
+                  <p className="font-semibold text-white">${service.price.toFixed(2)}</p>
+                  <button
+                    onClick={scrollToBooking}
+                    className="mt-2 rounded-lg bg-amber-500/10 px-3 py-1.5 text-sm font-medium text-amber-500 transition-colors hover:bg-amber-500/20"
+                  >
+                    Book
+                  </button>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        <div className="hidden overflow-x-auto pb-2 sm:block">
           <table className="w-full min-w-[600px]">
             <thead>
               <tr className="border-b border-white/10">

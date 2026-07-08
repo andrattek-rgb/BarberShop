@@ -343,10 +343,10 @@ export function BookingWizard() {
         subtitle="Easy online booking in just a few steps"
       />
 
-      <div className="max-w-4xl mx-auto">
+      <div className="mx-auto w-full max-w-4xl">
         {/* Progress Steps */}
         <div className="mb-8">
-          <div className="flex items-center justify-between">
+          <div className="flex items-start justify-between gap-1">
             {STEPS.map((step, index) => (
               <div
                 key={step.key}
@@ -354,7 +354,7 @@ export function BookingWizard() {
               >
                 <motion.div
                   className={cn(
-                    'w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-colors',
+                    'w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold transition-colors',
                     index < currentStepIndex
                       ? 'bg-amber-500 text-black'
                       : index === currentStepIndex
@@ -380,7 +380,7 @@ export function BookingWizard() {
         </div>
 
         {/* Step Content */}
-        <Card className="p-6 lg:p-8">
+        <Card className="p-4 sm:p-6 lg:p-8">
           <AnimatePresence mode="wait">
             {/* Step 1: Select Barber */}
             {currentStep === 'barber' && (
@@ -406,20 +406,20 @@ export function BookingWizard() {
                         nextStep();
                       }}
                       className={cn(
-                        'p-4 rounded-xl border-2 text-left transition-all',
+                        'w-full p-3 sm:p-4 rounded-xl border-2 text-left transition-all',
                         formData.barber_id === barber.id
                           ? 'border-amber-500 bg-amber-500/10'
                           : 'border-white/10 hover:border-amber-500/50'
                       )}
                     >
-                      <div className="flex items-center gap-4">
+                      <div className="flex min-w-0 items-center gap-3 sm:gap-4">
                         <img
                           src={barber.photo_url || 'https://images.pexels.com/photo-2379005/pexels-photo-2379005.jpeg?w=80&h=80&fit=crop'}
                           alt={barber.name}
-                          className="w-16 h-16 rounded-lg object-cover"
+                          className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 rounded-lg object-cover"
                         />
-                        <div>
-                          <h4 className="font-semibold text-white">{barber.name}</h4>
+                        <div className="min-w-0">
+                          <h4 className="truncate font-semibold text-white">{barber.name}</h4>
                           <p className="text-sm text-gray-400">{barber.experience_years}+ years</p>
                           <div className="flex items-center gap-1 mt-1">
                             <span className="text-amber-500 text-sm">{barber.rating.toFixed(1)}</span>
@@ -460,14 +460,14 @@ export function BookingWizard() {
                         nextStep();
                       }}
                       className={cn(
-                        'w-full p-4 rounded-xl border-2 text-left transition-all flex items-center justify-between',
+                        'w-full p-4 rounded-xl border-2 text-left transition-all flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3',
                         formData.service_id === service.id
                           ? 'border-amber-500 bg-amber-500/10'
                           : 'border-white/10 hover:border-amber-500/50'
                       )}
                     >
-                      <div>
-                        <div className="flex items-center gap-2">
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
                           <h4 className="font-semibold text-white">{service.name}</h4>
                           {service.is_popular && (
                             <span className="px-2 py-0.5 text-xs rounded bg-amber-500/20 text-amber-500">
@@ -478,8 +478,8 @@ export function BookingWizard() {
                         <p className="text-sm text-gray-400 mt-1">{service.description}</p>
                         <p className="text-xs text-gray-500 mt-1">{service.duration_minutes} minutes</p>
                       </div>
-                      <div className="text-right">
-                        <span className="text-2xl font-bold text-white">${service.price.toFixed(2)}</span>
+                      <div className="text-left sm:text-right">
+                        <span className="text-xl sm:text-2xl font-bold text-white">${service.price.toFixed(2)}</span>
                       </div>
                     </motion.button>
                   ))}
@@ -543,7 +543,7 @@ export function BookingWizard() {
                     </p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                  <div className="grid grid-cols-2 min-[380px]:grid-cols-3 sm:grid-cols-4 gap-2">
                     {timeSlots.map((slot) => (
                       <motion.button
                         key={slot.time}
@@ -640,27 +640,27 @@ export function BookingWizard() {
                   <h3 className="text-xl font-semibold text-white">Review & Confirm</h3>
                 </div>
                 <Card className="p-6 space-y-4">
-                  <div className="flex justify-between items-center py-2 border-b border-white/5">
+                  <div className="flex items-center justify-between gap-4 py-2 border-b border-white/5">
                     <span className="text-gray-400">Barber</span>
-                    <span className="text-white font-medium">{selectedBarber?.name}</span>
+                    <span className="text-right text-white font-medium">{selectedBarber?.name}</span>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-white/5">
+                  <div className="flex items-center justify-between gap-4 py-2 border-b border-white/5">
                     <span className="text-gray-400">Service</span>
-                    <span className="text-white font-medium">{selectedService?.name}</span>
+                    <span className="text-right text-white font-medium">{selectedService?.name}</span>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-white/5">
+                  <div className="flex items-center justify-between gap-4 py-2 border-b border-white/5">
                     <span className="text-gray-400">Date</span>
-                    <span className="text-white font-medium">{formatDate(formData.appointment_date)}</span>
+                    <span className="text-right text-white font-medium">{formatDate(formData.appointment_date)}</span>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-white/5">
+                  <div className="flex items-center justify-between gap-4 py-2 border-b border-white/5">
                     <span className="text-gray-400">Time</span>
                     <span className="text-white font-medium">{formatTime(formData.appointment_time)}</span>
                   </div>
-                  <div className="flex justify-between items-center py-2 border-b border-white/5">
+                  <div className="flex items-center justify-between gap-4 py-2 border-b border-white/5">
                     <span className="text-gray-400">Duration</span>
                     <span className="text-white font-medium">{selectedService?.duration_minutes} minutes</span>
                   </div>
-                  <div className="flex justify-between items-center py-2">
+                  <div className="flex items-center justify-between gap-4 py-2">
                     <span className="text-gray-400">Total Price</span>
                     <span className="text-2xl font-bold text-amber-500">${selectedService?.price.toFixed(2)}</span>
                   </div>

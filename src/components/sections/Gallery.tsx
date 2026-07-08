@@ -75,14 +75,15 @@ export function Gallery() {
       />
 
       {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-2 mb-10">
+      <div className="-mx-4 mb-8 sm:mb-10 overflow-x-auto px-4 scrollbar-hide">
+        <div className="flex w-max min-w-full justify-start sm:justify-center gap-2">
         {categories.map((category) => (
           <motion.button
             key={category}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setSelectedCategory(category)}
-            className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+            className={`flex-shrink-0 px-4 sm:px-5 py-2 rounded-full text-sm font-medium transition-all ${
               selectedCategory === category
                 ? 'bg-amber-500 text-black'
                 : 'bg-zinc-800 text-gray-300 hover:bg-zinc-700'
@@ -91,10 +92,11 @@ export function Gallery() {
             {category}
           </motion.button>
         ))}
+        </div>
       </div>
 
       {/* Masonry Grid */}
-      <motion.div layout className="columns-2 md:columns-3 lg:columns-4 gap-4">
+      <motion.div layout className="columns-1 min-[420px]:columns-2 md:columns-3 lg:columns-4 gap-4">
         <AnimatePresence>
           {filteredImages.map((image, index) => (
             <motion.div
@@ -136,18 +138,18 @@ export function Gallery() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95"
+            className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black/95 px-4"
             onClick={() => setLightboxImage(null)}
           >
-            <button onClick={() => setLightboxImage(null)} className="absolute top-6 right-6 p-2 text-white hover:text-amber-500 transition-colors z-10">
+            <button onClick={() => setLightboxImage(null)} className="absolute top-4 sm:top-6 right-4 sm:right-6 p-2 text-white hover:text-amber-500 transition-colors z-10">
               <X className="w-8 h-8" />
             </button>
 
-            <button onClick={(e) => { e.stopPropagation(); navigateLightbox('prev'); }} className="absolute left-4 md:left-8 p-3 text-white hover:text-amber-500 transition-colors z-10">
+            <button onClick={(e) => { e.stopPropagation(); navigateLightbox('prev'); }} className="absolute left-1 sm:left-4 md:left-8 p-3 text-white hover:text-amber-500 transition-colors z-10">
               <ChevronLeft className="w-8 h-8" />
             </button>
 
-            <button onClick={(e) => { e.stopPropagation(); navigateLightbox('next'); }} className="absolute right-4 md:right-8 p-3 text-white hover:text-amber-500 transition-colors z-10">
+            <button onClick={(e) => { e.stopPropagation(); navigateLightbox('next'); }} className="absolute right-1 sm:right-4 md:right-8 p-3 text-white hover:text-amber-500 transition-colors z-10">
               <ChevronRight className="w-8 h-8" />
             </button>
 
@@ -163,7 +165,7 @@ export function Gallery() {
               onClick={(e) => e.stopPropagation()}
             />
 
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
+            <div className="absolute bottom-6 sm:bottom-8 left-1/2 w-[calc(100%-2rem)] -translate-x-1/2 text-center">
               <span className="inline-block px-4 py-1.5 rounded bg-amber-500 text-black text-sm font-semibold mb-2">
                 {currentImage.category}
               </span>

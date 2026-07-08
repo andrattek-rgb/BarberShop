@@ -47,19 +47,19 @@ export function Navbar() {
           : 'bg-transparent'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <nav className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 sm:h-20 items-center justify-between gap-3">
           {/* Logo */}
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => scrollToSection('#home')}
-            className="flex items-center gap-3"
+            className="flex min-w-0 items-center gap-2 sm:gap-3"
           >
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
               <Scissors className="w-5 h-5 text-black" />
             </div>
-            <span className="text-xl font-bold text-white tracking-tight">
+            <span className="truncate text-lg sm:text-xl font-bold text-white tracking-tight">
               The<span className="text-amber-500">Gentleman</span>
             </span>
           </motion.button>
@@ -87,7 +87,7 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-white"
+            className="lg:hidden flex-shrink-0 p-2 text-white"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -101,7 +101,7 @@ export function Navbar() {
           transition={{ duration: 0.3 }}
           className="lg:hidden overflow-hidden"
         >
-          <div className="py-4 space-y-2">
+          <div className="py-3 sm:py-4 space-y-1.5 sm:space-y-2">
             {navLinks.map((link) => (
               <button
                 key={link.name}

@@ -17,8 +17,8 @@ export function Section({ id, children, className, background = 'dark' }: Sectio
   };
 
   return (
-    <section id={id} className={cn('py-20 lg:py-28', backgrounds[background], className)}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id={id} className={cn('w-full overflow-hidden py-16 sm:py-20 lg:py-28', backgrounds[background], className)}>
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {children}
       </div>
     </section>
@@ -39,18 +39,18 @@ export function SectionHeader({ eyebrow, title, subtitle, centered = true }: Sec
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className={cn('mb-12 lg:mb-16', centered && 'text-center')}
+      className={cn('mb-10 sm:mb-12 lg:mb-16', centered && 'text-center')}
     >
       {eyebrow && (
-        <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-sm font-semibold tracking-wider uppercase mb-4">
+        <span className="inline-block max-w-full px-3 sm:px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-4">
           {eyebrow}
         </span>
       )}
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+      <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
           {subtitle}
         </p>
       )}

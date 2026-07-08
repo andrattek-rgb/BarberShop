@@ -27,9 +27,9 @@ function ScrollToTop() {
 // Main Website Layout
 function MainSite() {
   return (
-    <div className="min-h-screen bg-black text-white antialiased">
+    <div className="min-h-screen w-full overflow-x-hidden bg-black text-white antialiased">
       <Navbar />
-      <main>
+      <main className="w-full overflow-x-hidden">
         <Hero />
         <Services />
         <Team />
